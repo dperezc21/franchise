@@ -1,11 +1,6 @@
 package com.prueba.franquicia.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-
-import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product")
@@ -15,8 +10,9 @@ public class Product {
     private String name;
     private Integer stock;
 
-    @ManyToMany()
-    private List<Branch> branchList;
+    @ManyToOne
+    @JoinColumn(name = "fk_branch", nullable = false, updatable = false)
+    private Branch branch;
 
     public void setId(Long id) {
         this.id = id;
@@ -40,5 +36,13 @@ public class Product {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 }

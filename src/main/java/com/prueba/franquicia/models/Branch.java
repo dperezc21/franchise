@@ -17,12 +17,7 @@ public class Branch {
     @JoinColumn(name = "fk_franchise", nullable = false, updatable = false)
     private Franchise franchise;
 
-    @JoinTable(
-            name = "rel_branches_products",
-            joinColumns = @JoinColumn(name = "fk_branch", nullable = false),
-            inverseJoinColumns = @JoinColumn(name="fk_product", nullable = false)
-    )
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
     private List<Product> productList;
 
     public void setId(Long id) {

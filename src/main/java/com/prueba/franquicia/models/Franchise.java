@@ -10,11 +10,21 @@ public class Franchise {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "franchise")
     private List<Branch> branchList;
+
+    public Franchise() {}
+    public Franchise(String franchiseName) {
+        this.name = franchiseName;
+    }
+
+    public Franchise(String franchiseName, List<Branch> branchList) {
+        this.name = franchiseName;
+        this.branchList = branchList;
+    }
 
     public String getName() {
         return name;
@@ -24,7 +34,7 @@ public class Franchise {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 }

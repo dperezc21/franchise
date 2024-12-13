@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -15,13 +16,10 @@ public class FranchiseController {
     @Autowired
     private FranchiseRepository franchiseRepository;
 
-    @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser () {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
+    @PostMapping(path="/add")
+    public @ResponseBody String addNewFranchise(@RequestParam String name) {
         Franchise franchise = new Franchise();
-        franchise.setName("new franchise");
+        franchise.setName(name);
         franchiseRepository.save(franchise);
         return "Saved";
     }

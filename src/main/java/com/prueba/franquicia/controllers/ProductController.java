@@ -8,9 +8,7 @@ import com.prueba.franquicia.response.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/products")
@@ -32,6 +30,17 @@ public class ProductController {
         System.out.println(findBranch);
         product.setBranch(findBranch);
         productRepository.save(product);
-        return ResponseEntity.ok().body(productResponse.toString());
+        return ResponseEntity.ok().body("product saved");
+    }
+
+    @DeleteMapping("/{branchId}/{productId}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("branchId") Long branchId,
+                                                @PathVariable("productId") Long productId) {
+        Branch findBranch = branchRepository.findById(branchId).orElse(null);
+        if(findBranch == null) return ResponseEntity.badRequest().body("branch not exists");
+        Product productToDelete = productRepository.findById(productId).orElse(null);
+        if(productToDelete == null) return ResponseEntity.badRequest().body("product not exists");
+        productRepository.deleteById(productToDelete.getId());
+        return ResponseEntity.ok().body("product deleted");
     }
 }

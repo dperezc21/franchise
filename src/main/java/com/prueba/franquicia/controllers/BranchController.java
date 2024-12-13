@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Optional;
-
 @Controller
 @RequestMapping(path = "/branches")
 public class BranchController {
@@ -25,16 +23,15 @@ public class BranchController {
     private FranchiseRepository franchiseRepository;
 
     @PostMapping(path = "/add")
-    public ResponseEntity<BranchResponse> saveBranchOfFranchise(@RequestBody BranchResponse branch) {
-        Branch branch1 = new Branch();
+    public ResponseEntity<BranchResponse> saveBranchOfFranchise(@RequestBody BranchResponse branchResponse) {
 
-        Franchise findFranchise = franchiseRepository.findById(branch.getFranchiseId()).orElse(null);
+        Franchise findFranchise = franchiseRepository.findById(branchResponse.getFranchiseId()).orElse(null);
         if(findFranchise == null) return ResponseEntity.badRequest().body(null);
-
-        branch1.setName(branch.getBranchName());
-        branch1.setFranchise(findFranchise);
-        Branch branchSaved = branchRepository.save(branch1);
-        branch1.setId(branchSaved.getId());
-        return ResponseEntity.ok(branch);
+        Branch branchToSave = new Branch();
+        branchToSave.setName(branchResponse.getBranchName());
+        branchToSave.setFranchise(findFranchise);
+        Branch branchSaved = branchRepository.save(branchToSave);
+        branchResponse.setId(branchSaved.getId());
+        return ResponseEntity.ok(branchResponse);
     }
 }

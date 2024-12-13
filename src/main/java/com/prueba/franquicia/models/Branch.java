@@ -43,4 +43,14 @@ public class Branch {
     public void setFranchise(Franchise franchise) {
         this.franchise = franchise;
     }
+
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", franchise=" + franchise +
+                ", productList=" + productList +
+                '}';
+    }
 }

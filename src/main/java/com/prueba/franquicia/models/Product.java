@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "product")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Integer stock;
@@ -13,6 +14,13 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "fk_branch", nullable = false, updatable = false)
     private Branch branch;
+
+    public Product(){}
+
+    public Product(String name, Integer stock) {
+        this.name = name;
+        this.stock = stock;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -44,5 +52,14 @@ public class Product {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", stock=" + stock +
+                '}';
     }
 }

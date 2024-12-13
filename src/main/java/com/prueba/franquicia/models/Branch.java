@@ -40,4 +40,12 @@ public class Branch {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Franchise getFranchise() {
+        return franchise;
+    }
+
+    public void setFranchise(Franchise franchise) {
+        this.franchise = franchise;
+    }
 }

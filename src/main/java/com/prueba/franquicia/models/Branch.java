@@ -12,7 +12,6 @@ public class Branch {
     private Long id;
 
     private String name;
-    private Integer stock;
 
     @ManyToOne
     @JoinColumn(name = "fk_franchise", nullable = false, updatable = false)
@@ -40,13 +39,5 @@ public class Branch {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
     }
 }

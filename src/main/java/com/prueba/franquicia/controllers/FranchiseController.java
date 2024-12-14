@@ -1,15 +1,14 @@
 package com.prueba.franquicia.controllers;
 
+import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.services.FranchiseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path = "/franchise")
+@RequestMapping(path = "/franchises")
 public class FranchiseController {
 
     @Autowired
@@ -23,5 +22,15 @@ public class FranchiseController {
             System.out.println("error while save franchise");
         }
         return "Saved";
+    }
+
+    @PutMapping(path = "/{franchiseId}")
+    public ResponseEntity<String> updateFranchiseName(@PathVariable Long franchiseId, @RequestParam String name) {
+        try {
+            franchiseService.updateFranchiseName(franchiseId, name);
+        } catch (FranchiseNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.ok("franchise name updated");
     }
 }

@@ -1,5 +1,6 @@
 package com.prueba.franquicia.services;
 
+import com.prueba.franquicia.constants.MessageConstants;
 import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.models.Franchise;
 import com.prueba.franquicia.repository.FranchiseRepository;
@@ -26,7 +27,7 @@ public class FranchiseService {
 
     public Franchise getFranchiseById(Long franchiseId) throws FranchiseNotFoundException {
         Franchise findFranchise = franchiseRepository.findById(franchiseId).orElse(null);
-        if(findFranchise == null) throw new FranchiseNotFoundException("franchise not exists");
+        if(findFranchise == null) throw new FranchiseNotFoundException(MessageConstants.FRANCHISE_NOT_FOUND);
         return findFranchise;
     }
 }

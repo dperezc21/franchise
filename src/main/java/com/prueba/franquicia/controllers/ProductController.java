@@ -1,5 +1,6 @@
 package com.prueba.franquicia.controllers;
 
+import com.prueba.franquicia.constants.MessageConstants;
 import com.prueba.franquicia.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.exceptions.ProductNotFoundException;
 import com.prueba.franquicia.exceptions.StockException;
@@ -27,7 +28,7 @@ public class ProductController {
 
         try {
             Branch findBranch = branchService.getBranchById(productResponse.getBranchId());
-            if(findBranch == null) throw new BranchNotFoundException("branch not found");
+            if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
             this.productService.saveProduct(productResponse.getName(), productResponse.getStock(), findBranch);
         } catch (BranchNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -40,7 +41,7 @@ public class ProductController {
                                                 @RequestParam Long productId) {
         try {
             Branch findBranch = branchService.getBranchById(branchId);
-            if(findBranch == null) throw new BranchNotFoundException("branch not found");
+            if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
             this.productService.deleteProduct(productId);
         } catch (BranchNotFoundException | ProductNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

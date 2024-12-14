@@ -1,5 +1,6 @@
 package com.prueba.franquicia.services;
 
+import com.prueba.franquicia.constants.MessageConstants;
 import com.prueba.franquicia.exceptions.ProductNotFoundException;
 import com.prueba.franquicia.exceptions.StockException;
 import com.prueba.franquicia.models.Branch;
@@ -22,7 +23,7 @@ public class ProductService {
 
     public void deleteProduct(Long productId) throws ProductNotFoundException {
         Product productToDelete = productRepository.findById(productId).orElse(null);
-        if(productToDelete == null) throw new ProductNotFoundException("product not exists");
+        if(productToDelete == null) throw new ProductNotFoundException(MessageConstants.PRODUCT_NOT_FOUND);
         productRepository.deleteById(productToDelete.getId());
     }
 
@@ -30,7 +31,7 @@ public class ProductService {
         if(stock < 0) throw new StockException("stock can't be less that cero");
 
         Product findProduct = getProductById(productId);
-        if(findProduct == null) throw new ProductNotFoundException("product not exists");
+        if(findProduct == null) throw new ProductNotFoundException(MessageConstants.PRODUCT_NOT_FOUND);
         findProduct.setStock(stock);
         productRepository.save(findProduct);
     }
@@ -41,7 +42,7 @@ public class ProductService {
 
     public void updateProductName(Long productId, String name) throws ProductNotFoundException {
         Product product = getProductById(productId);
-        if(product == null) throw new ProductNotFoundException("product not found");
+        if(product == null) throw new ProductNotFoundException(MessageConstants.PRODUCT_NOT_FOUND);
         product.setName(name);
         productRepository.save(product);
     }

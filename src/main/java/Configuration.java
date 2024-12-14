@@ -1,4 +1,5 @@
 import com.prueba.franquicia.services.BranchService;
+import com.prueba.franquicia.services.FranchiseService;
 import com.prueba.franquicia.services.ProductService;
 import org.springframework.context.annotation.Bean;
 
@@ -6,12 +7,11 @@ import org.springframework.context.annotation.Bean;
 public class Configuration {
 
     @Bean
-    public ProductService productBean() {
-        return new ProductService();
-    }
+    public ProductService productBean() { return new ProductService(); }
 
     @Bean
-    public BranchService branchBean() {
-        return new BranchService();
-    }
+    public BranchService branchBean() { return new BranchService(); }
+
+    @Bean
+    public FranchiseService franchiseBean() { return new FranchiseService(); }
 }

@@ -1,14 +1,13 @@
 package com.prueba.franquicia.controllers;
 
+import com.prueba.franquicia.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.response.BranchResponse;
 import com.prueba.franquicia.services.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/branches")
@@ -25,5 +24,15 @@ public class BranchController {
             System.out.println(e.getMessage());
         }
         return ResponseEntity.ok(branchResponse);
+    }
+
+    @PutMapping(path = "/{branchId}")
+    public ResponseEntity<String> updateFranchiseName(@PathVariable Long branchId, @RequestParam String name) {
+        try {
+            branchService.updateBranchName(branchId, name);
+        } catch (BranchNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.ok("branch name updated");
     }
 }

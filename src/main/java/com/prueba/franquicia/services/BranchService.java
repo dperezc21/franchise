@@ -1,5 +1,6 @@
 package com.prueba.franquicia.services;
 
+import com.prueba.franquicia.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.models.Branch;
 import com.prueba.franquicia.models.Franchise;
@@ -32,5 +33,12 @@ public class BranchService {
 
     public Branch getBranchById(Long branchId) {
         return branchRepository.findById(branchId).orElse(null);
+    }
+
+    public void updateBranchName(Long branchId, String branchName) throws BranchNotFoundException {
+        Branch branch = getBranchById(branchId);
+        if(branch == null) throw new BranchNotFoundException("branch not found");
+        branch.setName(branchName);
+        branchRepository.save(branch);
     }
 }

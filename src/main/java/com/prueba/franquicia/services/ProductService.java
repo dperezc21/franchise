@@ -4,16 +4,12 @@ import com.prueba.franquicia.exceptions.ProductNotFoundException;
 import com.prueba.franquicia.exceptions.StockException;
 import com.prueba.franquicia.models.Branch;
 import com.prueba.franquicia.models.Product;
-import com.prueba.franquicia.repository.BranchRepository;
 import com.prueba.franquicia.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
-
-    @Autowired
-    private BranchRepository branchRepository;
 
     @Autowired
     private ProductRepository productRepository;

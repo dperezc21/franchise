@@ -27,7 +27,6 @@ public class ProductController {
         if(findBranch == null) return ResponseEntity.badRequest().body("Branch not found");
 
         Product product = new Product(productResponse.getName(), productResponse.getStock());
-        System.out.println(findBranch);
         product.setBranch(findBranch);
         productRepository.save(product);
         return ResponseEntity.ok().body("product saved");
@@ -42,5 +41,17 @@ public class ProductController {
         if(productToDelete == null) return ResponseEntity.badRequest().body("product not exists");
         productRepository.deleteById(productToDelete.getId());
         return ResponseEntity.ok().body("product deleted");
+    }
+
+    @PutMapping("/{productId}/{stock}")
+    public ResponseEntity<String> updateProductStock(@PathVariable Long productId,
+                                                     @PathVariable Integer stock) {
+        if(stock < 0) return ResponseEntity.badRequest().body("stock can't be less that cero");
+
+        Product findProduct = productRepository.findById(productId).orElse(null);
+        if(findProduct == null) return ResponseEntity.badRequest().body("product not exists");
+        findProduct.setStock(stock);
+        productRepository.save(findProduct);
+        return ResponseEntity.ok("product stock updated");
     }
 }

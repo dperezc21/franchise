@@ -1,14 +1,19 @@
 package com.prueba.franquicia.controllers;
 
 import com.prueba.franquicia.models.Branch;
+import com.prueba.franquicia.models.Franchise;
 import com.prueba.franquicia.models.Product;
 import com.prueba.franquicia.repository.BranchRepository;
+import com.prueba.franquicia.repository.FranchiseRepository;
 import com.prueba.franquicia.repository.ProductRepository;
 import com.prueba.franquicia.response.ProductResponse;
+import com.prueba.franquicia.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/products")
@@ -19,6 +24,12 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private FranchiseRepository franchiseRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @PostMapping(path = "/add")
     public ResponseEntity<String> saveProduct(@RequestBody ProductResponse productResponse) {
@@ -53,5 +64,13 @@ public class ProductController {
         findProduct.setStock(stock);
         productRepository.save(findProduct);
         return ResponseEntity.ok("product stock updated");
+    }
+
+    @GetMapping("/byStock/{franchiseId}")
+    public ResponseEntity<List<Branch>> productsOfBranchByStock(@PathVariable Long franchiseId) {
+        Franchise franchise = franchiseRepository.findById(franchiseId).orElse(null);
+        if(franchise == null) return ResponseEntity.badRequest().body(null);
+        productService.getProducts(franchiseId);
+        return ResponseEntity.ok().body(franchise.getBranchList());
     }
 }

@@ -1,5 +1,8 @@
 package com.prueba.franquicia.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +18,8 @@ public class Branch {
 
     @ManyToOne
     @JoinColumn(name = "fk_franchise", nullable = false, updatable = false)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Franchise franchise;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")

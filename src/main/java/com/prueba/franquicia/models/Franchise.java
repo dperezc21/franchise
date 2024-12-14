@@ -1,5 +1,8 @@
 package com.prueba.franquicia.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -36,5 +39,26 @@ public class Franchise {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Branch> getBranchList() {
+        return branchList;
+    }
+
+    public void setBranchList(List<Branch> branchList) {
+        this.branchList = branchList;
+    }
+
+    @Override
+    public String toString() {
+        return "Franchise{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", branchList=" + branchList +
+                '}';
     }
 }

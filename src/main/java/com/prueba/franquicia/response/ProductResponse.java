@@ -28,4 +28,5 @@ public class ProductResponse {
     public void setStock(Integer stock) {
         this.stock = stock;
     }
+
 }

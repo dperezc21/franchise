@@ -1,10 +1,12 @@
 package com.prueba.franquicia.controllers;
 
+import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.models.Branch;
 import com.prueba.franquicia.models.Franchise;
 import com.prueba.franquicia.repository.BranchRepository;
 import com.prueba.franquicia.repository.FranchiseRepository;
 import com.prueba.franquicia.response.BranchResponse;
+import com.prueba.franquicia.services.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,21 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BranchController {
 
     @Autowired
-    private BranchRepository branchRepository;
-
-    @Autowired
-    private FranchiseRepository franchiseRepository;
+    private BranchService branchService;
 
     @PostMapping(path = "/add")
     public ResponseEntity<BranchResponse> saveBranchOfFranchise(@RequestBody BranchResponse branchResponse) {
-
-        Franchise findFranchise = franchiseRepository.findById(branchResponse.getFranchiseId()).orElse(null);
-        if(findFranchise == null) return ResponseEntity.badRequest().body(null);
-        Branch branchToSave = new Branch();
-        branchToSave.setName(branchResponse.getBranchName());
-        branchToSave.setFranchise(findFranchise);
-        Branch branchSaved = branchRepository.save(branchToSave);
-        branchResponse.setId(branchSaved.getId());
+        try {
+            this.branchService.saveBranch(branchResponse);
+        } catch (FranchiseNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
         return ResponseEntity.ok(branchResponse);
     }
 }

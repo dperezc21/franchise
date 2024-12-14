@@ -1,7 +1,5 @@
 package com.prueba.franquicia.controllers;
 
-import com.prueba.franquicia.models.Franchise;
-import com.prueba.franquicia.repository.FranchiseRepository;
 import com.prueba.franquicia.services.FranchiseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

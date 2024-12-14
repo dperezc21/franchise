@@ -1,10 +1,6 @@
 package com.prueba.franquicia.controllers;
 
 import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
-import com.prueba.franquicia.models.Branch;
-import com.prueba.franquicia.models.Franchise;
-import com.prueba.franquicia.repository.BranchRepository;
-import com.prueba.franquicia.repository.FranchiseRepository;
 import com.prueba.franquicia.response.BranchResponse;
 import com.prueba.franquicia.services.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;

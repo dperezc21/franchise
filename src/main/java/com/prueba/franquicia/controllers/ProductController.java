@@ -58,4 +58,14 @@ public class ProductController {
         }
         return ResponseEntity.ok("product stock updated");
     }
+
+    @PutMapping(path = "/{productId}")
+    public ResponseEntity<String> updateProductName(@PathVariable Long productId, @RequestParam String name) {
+        try {
+            productService.updateProductName(productId, name);
+        } catch (ProductNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok("product name updated");
+    }
 }

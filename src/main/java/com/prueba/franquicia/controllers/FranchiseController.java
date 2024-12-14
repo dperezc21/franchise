@@ -29,7 +29,7 @@ public class FranchiseController {
         try {
             franchiseService.updateFranchiseName(franchiseId, name);
         } catch (FranchiseNotFoundException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("franchise name updated");
     }

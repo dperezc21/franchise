@@ -27,11 +27,11 @@ public class BranchController {
     }
 
     @PutMapping(path = "/{branchId}")
-    public ResponseEntity<String> updateFranchiseName(@PathVariable Long branchId, @RequestParam String name) {
+    public ResponseEntity<String> updateBranchName(@PathVariable Long branchId, @RequestParam String name) {
         try {
             branchService.updateBranchName(branchId, name);
         } catch (BranchNotFoundException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("branch name updated");
     }

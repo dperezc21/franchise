@@ -38,4 +38,11 @@ public class ProductService {
     public Product getProductById(Long productId) {
         return productRepository.findById(productId).orElse(null);
     }
+
+    public void updateProductName(Long productId, String name) throws ProductNotFoundException {
+        Product product = getProductById(productId);
+        if(product == null) throw new ProductNotFoundException("product not found");
+        product.setName(name);
+        productRepository.save(product);
+    }
 }

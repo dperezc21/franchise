@@ -7,7 +7,7 @@ import com.prueba.franquicia.domain.exceptions.StockException;
 import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.response.ProductResponse;
 import com.prueba.franquicia.application.BranchService;
-import com.prueba.franquicia.services.ProductService;
+import com.prueba.franquicia.application.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

@@ -1,8 +1,6 @@
-package com.prueba.franquicia.models;
+package com.prueba.franquicia.domain.models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.prueba.franquicia.models.Branch;
 import jakarta.persistence.*;
 
 import java.util.List;

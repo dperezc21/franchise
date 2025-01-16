@@ -1,7 +1,7 @@
 package com.prueba.franquicia.controllers;
 
+import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.exceptions.BranchNotFoundException;
-import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.response.BranchResponse;
 import com.prueba.franquicia.services.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;

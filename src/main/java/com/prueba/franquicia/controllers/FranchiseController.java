@@ -1,7 +1,7 @@
 package com.prueba.franquicia.controllers;
 
-import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
-import com.prueba.franquicia.services.FranchiseService;
+import com.prueba.franquicia.application.FranchiseService;
+import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ public class FranchiseController {
     @PostMapping(path="/add")
     public @ResponseBody String addNewFranchise(@RequestParam String name) {
         try{
-            this.franchiseService.saveFranchise(name);
+            this.franchiseService.createFranchise(name);
         } catch (Exception e) {
             System.out.println("error while save franchise");
         }

@@ -1,12 +1,12 @@
 package com.prueba.franquicia.services;
 
 import com.prueba.franquicia.constants.MessageConstants;
+import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.exceptions.BranchNotFoundException;
-import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.models.Branch;
-import com.prueba.franquicia.models.Franchise;
+import com.prueba.franquicia.domain.models.Franchise;
 import com.prueba.franquicia.repository.BranchRepository;
-import com.prueba.franquicia.repository.FranchiseRepository;
+import com.prueba.franquicia.infrastructure.database.FranchiseDBRepository;
 import com.prueba.franquicia.response.BranchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ public class BranchService {
     private BranchRepository branchRepository;
 
     @Autowired
-    private FranchiseRepository franchiseRepository;
+    private FranchiseDBRepository franchiseDBRepository;
 
     public BranchResponse saveBranch(BranchResponse branchResponse) throws FranchiseNotFoundException {
 
-        Franchise findFranchise = franchiseRepository.findById(branchResponse.getFranchiseId()).orElse(null);
+        Franchise findFranchise = franchiseDBRepository.findById(branchResponse.getFranchiseId()).orElse(null);
         if(findFranchise == null) throw new FranchiseNotFoundException(MessageConstants.FRANCHISE_NOT_FOUND);
         Branch branchToSave = new Branch();
         branchToSave.setName(branchResponse.getBranchName());

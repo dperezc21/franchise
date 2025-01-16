@@ -1,6 +1,6 @@
 package com.prueba.franquicia.application;
 
-import com.prueba.franquicia.constants.MessageConstants;
+import com.prueba.franquicia.domain.constants.MessageConstants;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.models.Franchise;
 import com.prueba.franquicia.domain.repositories.FranchiseRepository;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FranchiseService {
+public class FranchiseUseCase {
 
     @Autowired
     private FranchiseRepository franchiseRepository;

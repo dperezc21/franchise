@@ -1,6 +1,6 @@
 package com.prueba.franquicia.application;
 
-import com.prueba.franquicia.constants.MessageConstants;
+import com.prueba.franquicia.domain.constants.MessageConstants;
 import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
 import com.prueba.franquicia.domain.exceptions.StockException;
 import com.prueba.franquicia.domain.models.Branch;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductService {
+public class ProductUseCase {
 
     @Autowired
     private ProductRepository productRepository;

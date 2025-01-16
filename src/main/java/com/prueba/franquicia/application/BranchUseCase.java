@@ -1,18 +1,18 @@
 package com.prueba.franquicia.application;
 
-import com.prueba.franquicia.constants.MessageConstants;
+import com.prueba.franquicia.domain.constants.MessageConstants;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.repositories.BranchRepository;
 import com.prueba.franquicia.domain.repositories.FranchiseRepository;
 import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.domain.models.Franchise;
-import com.prueba.franquicia.response.BranchResponse;
+import com.prueba.franquicia.domain.response.BranchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BranchService {
+public class BranchUseCase {
 
     @Autowired
     private BranchRepository branchRepository;

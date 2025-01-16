@@ -1,6 +1,6 @@
-package com.prueba.franquicia.controllers;
+package com.prueba.franquicia.infrastructure.controllers;
 
-import com.prueba.franquicia.application.FranchiseService;
+import com.prueba.franquicia.application.FranchiseUseCase;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 public class FranchiseController {
 
     @Autowired
-    private FranchiseService franchiseService;
+    private FranchiseUseCase franchiseUseCase;
 
     @PostMapping(path="/add")
     public @ResponseBody String addNewFranchise(@RequestParam String name) {
         try{
-            this.franchiseService.createFranchise(name);
+            this.franchiseUseCase.createFranchise(name);
         } catch (Exception e) {
             System.out.println("error while save franchise");
         }
@@ -27,7 +27,7 @@ public class FranchiseController {
     @PutMapping(path = "/{franchiseId}")
     public ResponseEntity<String> updateFranchiseName(@PathVariable Long franchiseId, @RequestParam String name) {
         try {
-            franchiseService.updateFranchiseName(franchiseId, name);
+            franchiseUseCase.updateFranchiseName(franchiseId, name);
         } catch (FranchiseNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

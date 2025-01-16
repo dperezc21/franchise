@@ -1,4 +1,4 @@
-package com.prueba.franquicia.constants;
+package com.prueba.franquicia.domain.constants;
 
 public class MessageConstants {
     public static final String PRODUCT_NOT_FOUND = "product not found";

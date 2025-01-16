@@ -1,4 +1,4 @@
-package com.prueba.franquicia.exceptions;
+package com.prueba.franquicia.domain.exceptions;
 
 public class FranchiseNotFoundException extends Exception {
     public FranchiseNotFoundException(String message) {

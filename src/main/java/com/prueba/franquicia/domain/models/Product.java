@@ -1,29 +1,31 @@
-package com.prueba.franquicia.models;
+package com.prueba.franquicia.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "branch")
-public class Branch {
+@Table(name = "product")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+    private Integer stock;
 
     @ManyToOne
-    @JoinColumn(name = "fk_franchise", nullable = false, updatable = false)
+    @JoinColumn(name = "fk_branch", nullable = false, updatable = false)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    private Franchise franchise;
+    private Branch branch;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
-    private List<Product> productList;
+    public Product(){}
+
+    public Product(String name, Integer stock) {
+        this.name = name;
+        this.stock = stock;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -41,21 +43,28 @@ public class Branch {
         this.name = name;
     }
 
-    public Franchise getFranchise() {
-        return franchise;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setFranchise(Franchise franchise) {
-        this.franchise = franchise;
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     @Override
     public String toString() {
-        return "Branch{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", franchise=" + franchise +
-                ", productList=" + productList +
+                ", stock=" + stock +
                 '}';
     }
 }

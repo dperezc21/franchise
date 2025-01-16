@@ -1,4 +1,4 @@
-package com.prueba.franquicia.exceptions;
+package com.prueba.franquicia.domain.exceptions;
 
 public class ProductNotFoundException extends  Exception {
     public ProductNotFoundException(String message) {

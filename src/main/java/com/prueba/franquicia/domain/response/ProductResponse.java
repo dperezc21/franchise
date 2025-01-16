@@ -1,4 +1,4 @@
-package com.prueba.franquicia.response;
+package com.prueba.franquicia.domain.response;
 
 public class ProductResponse {
     private Long branchId;

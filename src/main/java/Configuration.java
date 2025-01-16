@@ -1,17 +1,17 @@
-import com.prueba.franquicia.services.BranchService;
-import com.prueba.franquicia.services.FranchiseService;
-import com.prueba.franquicia.services.ProductService;
+import com.prueba.franquicia.application.BranchUseCase;
+import com.prueba.franquicia.application.FranchiseUseCase;
+import com.prueba.franquicia.application.ProductUseCase;
 import org.springframework.context.annotation.Bean;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
 
     @Bean
-    public ProductService productBean() { return new ProductService(); }
+    public ProductUseCase productBean() { return new ProductUseCase(); }
 
     @Bean
-    public BranchService branchBean() { return new BranchService(); }
+    public BranchUseCase branchBean() { return new BranchUseCase(); }
 
     @Bean
-    public FranchiseService franchiseBean() { return new FranchiseService(); }
+    public FranchiseUseCase franchiseBean() { return new FranchiseUseCase(); }
 }

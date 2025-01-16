@@ -1,9 +1,9 @@
-package com.prueba.franquicia.controllers;
+package com.prueba.franquicia.infrastructure.controllers;
 
-import com.prueba.franquicia.exceptions.BranchNotFoundException;
-import com.prueba.franquicia.exceptions.FranchiseNotFoundException;
-import com.prueba.franquicia.response.BranchResponse;
-import com.prueba.franquicia.services.BranchService;
+import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
+import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
+import com.prueba.franquicia.domain.response.BranchResponse;
+import com.prueba.franquicia.application.BranchUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class BranchController {
 
     @Autowired
-    private BranchService branchService;
+    private BranchUseCase branchUseCase;
 
     @PostMapping(path = "/add")
     public ResponseEntity<BranchResponse> saveBranchOfFranchise(@RequestBody BranchResponse branchResponse) {
         try {
-            this.branchService.saveBranch(branchResponse);
+            this.branchUseCase.saveBranch(branchResponse);
         } catch (FranchiseNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -29,7 +29,7 @@ public class BranchController {
     @PutMapping(path = "/{branchId}")
     public ResponseEntity<String> updateBranchName(@PathVariable Long branchId, @RequestParam String name) {
         try {
-            branchService.updateBranchName(branchId, name);
+            branchUseCase.updateBranchName(branchId, name);
         } catch (BranchNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

@@ -1,13 +1,11 @@
-package com.prueba.franquicia.controllers;
+package com.prueba.franquicia.infrastructure.controllers;
 
-import com.prueba.franquicia.constants.MessageConstants;
-import com.prueba.franquicia.exceptions.BranchNotFoundException;
-import com.prueba.franquicia.exceptions.ProductNotFoundException;
-import com.prueba.franquicia.exceptions.StockException;
-import com.prueba.franquicia.models.Branch;
-import com.prueba.franquicia.response.ProductResponse;
-import com.prueba.franquicia.services.BranchService;
-import com.prueba.franquicia.services.ProductService;
+import com.prueba.franquicia.application.BranchUseCase;
+import com.prueba.franquicia.application.ProductUseCase;
+import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
+import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
+import com.prueba.franquicia.domain.exceptions.StockException;
+import com.prueba.franquicia.domain.response.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,18 +16,16 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @Autowired
-    private ProductService productService;
+    private ProductUseCase productUseCase;
 
     @Autowired
-    private BranchService branchService;
+    private BranchUseCase branchUseCase;
 
     @PostMapping(path = "/add")
     public ResponseEntity<String> saveProduct(@RequestBody ProductResponse productResponse) {
 
         try {
-            Branch findBranch = branchService.getBranchById(productResponse.getBranchId());
-            if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
-            this.productService.saveProduct(productResponse.getName(), productResponse.getStock(), findBranch);
+            this.productUseCase.saveProduct(productResponse.getName(), productResponse.getStock(), productResponse.getBranchId());
         } catch (BranchNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -40,9 +36,7 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@RequestParam Long branchId,
                                                 @RequestParam Long productId) {
         try {
-            Branch findBranch = branchService.getBranchById(branchId);
-            if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
-            this.productService.deleteProduct(productId);
+            this.productUseCase.deleteProduct(productId, branchId);
         } catch (BranchNotFoundException | ProductNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -53,7 +47,7 @@ public class ProductController {
     public ResponseEntity<String> updateProductStock(@PathVariable Long productId,
                                                      @PathVariable Integer stock) {
         try {
-            this.productService.updateProductStock(productId, stock);
+            this.productUseCase.updateProductStock(productId, stock);
         } catch (ProductNotFoundException | StockException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -63,7 +57,7 @@ public class ProductController {
     @PutMapping(path = "/{productId}")
     public ResponseEntity<String> updateProductName(@PathVariable Long productId, @RequestParam String name) {
         try {
-            productService.updateProductName(productId, name);
+            productUseCase.updateProductName(productId, name);
         } catch (ProductNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

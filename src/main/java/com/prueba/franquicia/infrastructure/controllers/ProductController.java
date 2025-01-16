@@ -1,13 +1,11 @@
 package com.prueba.franquicia.infrastructure.controllers;
 
-import com.prueba.franquicia.domain.constants.MessageConstants;
+import com.prueba.franquicia.application.BranchUseCase;
+import com.prueba.franquicia.application.ProductUseCase;
 import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
 import com.prueba.franquicia.domain.exceptions.StockException;
-import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.domain.response.ProductResponse;
-import com.prueba.franquicia.application.BranchUseCase;
-import com.prueba.franquicia.application.ProductUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,9 +25,7 @@ public class ProductController {
     public ResponseEntity<String> saveProduct(@RequestBody ProductResponse productResponse) {
 
         try {
-            Branch findBranch = branchUseCase.getBranchById(productResponse.getBranchId());
-            if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
-            this.productUseCase.saveProduct(productResponse.getName(), productResponse.getStock(), findBranch);
+            this.productUseCase.saveProduct(productResponse.getName(), productResponse.getStock(), productResponse.getBranchId());
         } catch (BranchNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -40,9 +36,7 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@RequestParam Long branchId,
                                                 @RequestParam Long productId) {
         try {
-            Branch findBranch = branchUseCase.getBranchById(branchId);
-            if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
-            this.productUseCase.deleteProduct(productId);
+            this.productUseCase.deleteProduct(productId, branchId);
         } catch (BranchNotFoundException | ProductNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

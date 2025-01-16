@@ -1,9 +1,9 @@
 package com.prueba.franquicia.controllers;
 
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
-import com.prueba.franquicia.exceptions.BranchNotFoundException;
+import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.response.BranchResponse;
-import com.prueba.franquicia.services.BranchService;
+import com.prueba.franquicia.application.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

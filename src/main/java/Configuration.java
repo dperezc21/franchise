@@ -1,4 +1,4 @@
-import com.prueba.franquicia.services.BranchService;
+import com.prueba.franquicia.application.BranchService;
 import com.prueba.franquicia.application.FranchiseService;
 import com.prueba.franquicia.services.ProductService;
 import org.springframework.context.annotation.Bean;

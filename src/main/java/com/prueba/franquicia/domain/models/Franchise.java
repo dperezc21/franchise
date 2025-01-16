@@ -1,6 +1,5 @@
 package com.prueba.franquicia.domain.models;
 
-import com.prueba.franquicia.models.Branch;
 import jakarta.persistence.*;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.prueba.franquicia.services;
 
 import com.prueba.franquicia.constants.MessageConstants;
-import com.prueba.franquicia.exceptions.ProductNotFoundException;
-import com.prueba.franquicia.exceptions.StockException;
-import com.prueba.franquicia.models.Branch;
+import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
+import com.prueba.franquicia.domain.exceptions.StockException;
+import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.models.Product;
 import com.prueba.franquicia.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

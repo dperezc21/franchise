@@ -1,12 +1,12 @@
-package com.prueba.franquicia.services;
+package com.prueba.franquicia.application;
 
 import com.prueba.franquicia.constants.MessageConstants;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
-import com.prueba.franquicia.exceptions.BranchNotFoundException;
-import com.prueba.franquicia.models.Branch;
+import com.prueba.franquicia.domain.repositories.BranchRepository;
+import com.prueba.franquicia.domain.repositories.FranchiseRepository;
+import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
+import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.domain.models.Franchise;
-import com.prueba.franquicia.repository.BranchRepository;
-import com.prueba.franquicia.infrastructure.database.FranchiseDBRepository;
 import com.prueba.franquicia.response.BranchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,28 +18,27 @@ public class BranchService {
     private BranchRepository branchRepository;
 
     @Autowired
-    private FranchiseDBRepository franchiseDBRepository;
+    private FranchiseRepository franchiseRepository;
 
-    public BranchResponse saveBranch(BranchResponse branchResponse) throws FranchiseNotFoundException {
+    public void saveBranch(BranchResponse branchResponse) throws FranchiseNotFoundException {
 
-        Franchise findFranchise = franchiseDBRepository.findById(branchResponse.getFranchiseId()).orElse(null);
+        Franchise findFranchise = franchiseRepository.getFranchiseById(branchResponse.getFranchiseId());
         if(findFranchise == null) throw new FranchiseNotFoundException(MessageConstants.FRANCHISE_NOT_FOUND);
         Branch branchToSave = new Branch();
         branchToSave.setName(branchResponse.getBranchName());
         branchToSave.setFranchise(findFranchise);
-        Branch branchSaved = branchRepository.save(branchToSave);
+        Branch branchSaved = branchRepository.createBranch(branchToSave);
         branchResponse.setId(branchSaved.getId());
-        return branchResponse;
     }
 
     public Branch getBranchById(Long branchId) {
-        return branchRepository.findById(branchId).orElse(null);
+        return branchRepository.getBranchById(branchId);
     }
 
     public void updateBranchName(Long branchId, String branchName) throws BranchNotFoundException {
         Branch branch = getBranchById(branchId);
         if(branch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
         branch.setName(branchName);
-        branchRepository.save(branch);
+        branchRepository.updateBranchName(branch);
     }
 }

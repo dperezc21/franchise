@@ -1,12 +1,12 @@
 package com.prueba.franquicia.controllers;
 
 import com.prueba.franquicia.constants.MessageConstants;
-import com.prueba.franquicia.exceptions.BranchNotFoundException;
-import com.prueba.franquicia.exceptions.ProductNotFoundException;
-import com.prueba.franquicia.exceptions.StockException;
-import com.prueba.franquicia.models.Branch;
+import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
+import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
+import com.prueba.franquicia.domain.exceptions.StockException;
+import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.response.ProductResponse;
-import com.prueba.franquicia.services.BranchService;
+import com.prueba.franquicia.application.BranchService;
 import com.prueba.franquicia.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

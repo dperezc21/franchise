@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class FranchiseImplementRepository implements FranchiseRepository {
+public class FranchiseRepositoryImpl implements FranchiseRepository {
 
     @Autowired
     private FranchiseDBRepository franchiseDBRepository;

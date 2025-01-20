@@ -4,8 +4,11 @@ import com.prueba.franquicia.domain.constants.MessageConstants;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.models.Franchise;
 import com.prueba.franquicia.domain.repositories.FranchiseRepository;
+import com.prueba.franquicia.domain.response.FranchiseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FranchiseUseCase {
@@ -30,5 +33,13 @@ public class FranchiseUseCase {
         Franchise findFranchise = this.franchiseRepository.getFranchiseById(franchiseId);
         if(findFranchise == null) throw new FranchiseNotFoundException(MessageConstants.FRANCHISE_NOT_FOUND);
         return findFranchise;
+    }
+
+    public List<Franchise> getAllFranchise() {
+        return this.franchiseRepository.getFranchises();
+    }
+
+    public static FranchiseResponse mapFranchise(Franchise franchise) {
+        return new FranchiseResponse(franchise.getId(), franchise.getName());
     }
 }

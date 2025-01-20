@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class FranchiseRepositoryImpl implements FranchiseRepository {
@@ -27,5 +29,10 @@ public class FranchiseRepositoryImpl implements FranchiseRepository {
     @Override
     public Franchise getFranchiseById(Long franchiseId) {
         return franchiseDBRepository.findById(franchiseId).orElse(null);
+    }
+
+    @Override
+    public List<Franchise> getFranchises() {
+        return (List<Franchise>) franchiseDBRepository.findAll();
     }
 }

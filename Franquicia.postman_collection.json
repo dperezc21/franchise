@@ -233,7 +233,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/products/3?name=Burguer Kings",
+									"raw": "http://localhost:8000/products/3/Burguer Kings/3",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -241,13 +241,9 @@
 									"port": "8000",
 									"path": [
 										"products",
+										"3",
+										"Burguer Kings",
 										"3"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Burguer Kings"
-										}
 									]
 								}
 							},
@@ -260,7 +256,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"branchId\": 3,\r\n    \"name\": \"huevos\",\r\n    \"stock\": 17\r\n}",
+									"raw": "{\r\n    \"branchId\": 5,\r\n    \"name\": \"pan\",\r\n    \"stock\": 17\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -561,7 +557,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://franchise-production.up.railway.app/3?name=Burguer Kings",
+									"raw": "https://franchise-production.up.railway.app/products/3/Burguer Kings/3",
 									"protocol": "https",
 									"host": [
 										"franchise-production",
@@ -570,13 +566,10 @@
 										"app"
 									],
 									"path": [
+										"products",
+										"3",
+										"Burguer Kings",
 										"3"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Burguer Kings"
-										}
 									]
 								}
 							},

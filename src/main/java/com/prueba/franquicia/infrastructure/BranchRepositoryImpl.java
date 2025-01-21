@@ -26,4 +26,9 @@ public class BranchRepositoryImpl implements BranchRepository {
     public Branch getBranchById(Long branchId) {
         return this.branchRepository.findById(branchId).orElse(null);
     }
+
+    @Override
+    public Branch getRecordByName(String recordName) {
+        return this.branchRepository.getBranchByName(recordName);
+    }
 }

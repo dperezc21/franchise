@@ -1,7 +1,7 @@
 package com.prueba.franquicia.infrastructure.controllers;
 
 import com.prueba.franquicia.application.FranchiseUseCase;
-import com.prueba.franquicia.domain.exceptions.FranchiseNameFoundException;
+import com.prueba.franquicia.domain.exceptions.RecordNameFoundException;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.response.FranchiseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class FranchiseController {
     public @ResponseBody ResponseEntity<String> addNewFranchise(@RequestParam String name) {
         try{
             this.franchiseUseCase.createFranchise(name);
-        } catch (FranchiseNameFoundException e) {
+        } catch (RecordNameFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("Saved");

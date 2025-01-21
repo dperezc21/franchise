@@ -1,6 +1,7 @@
 package com.prueba.franquicia.application;
 
 import com.prueba.franquicia.domain.constants.MessageConstants;
+import com.prueba.franquicia.domain.exceptions.RecordNameFoundException;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.repositories.BranchRepository;
 import com.prueba.franquicia.domain.repositories.FranchiseRepository;
@@ -20,8 +21,8 @@ public class BranchUseCase {
     @Autowired
     private FranchiseRepository franchiseRepository;
 
-    public void saveBranch(BranchResponse branchResponse) throws FranchiseNotFoundException {
-
+    public void saveBranch(BranchResponse branchResponse) throws FranchiseNotFoundException, RecordNameFoundException {
+        this.verifyBranchNameNotExists(branchResponse.getBranchName());
         Franchise findFranchise = franchiseRepository.getFranchiseById(branchResponse.getFranchiseId());
         if(findFranchise == null) throw new FranchiseNotFoundException(MessageConstants.FRANCHISE_NOT_FOUND);
         Branch branchToSave = new Branch();
@@ -40,5 +41,10 @@ public class BranchUseCase {
         if(branch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
         branch.setName(branchName);
         branchRepository.updateBranchName(branch);
+    }
+
+    public void verifyBranchNameNotExists(String branchName) throws RecordNameFoundException {
+        Branch branch = this.branchRepository.getRecordByName(branchName);
+        if(branch != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
     }
 }

@@ -2,6 +2,7 @@ package com.prueba.franquicia.infrastructure.controllers;
 
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
+import com.prueba.franquicia.domain.exceptions.RecordNameFoundException;
 import com.prueba.franquicia.domain.response.BranchResponse;
 import com.prueba.franquicia.application.BranchUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class BranchController {
     public ResponseEntity<BranchResponse> saveBranchOfFranchise(@RequestBody BranchResponse branchResponse) {
         try {
             this.branchUseCase.saveBranch(branchResponse);
-        } catch (FranchiseNotFoundException e) {
-            System.out.println(e.getMessage());
+        } catch (FranchiseNotFoundException | RecordNameFoundException e) {
+            throw new RuntimeException(e);
         }
         return ResponseEntity.ok(branchResponse);
     }

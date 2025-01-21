@@ -58,11 +58,13 @@ public class ProductController {
         return ResponseEntity.ok("product stock updated");
     }
 
-    @PutMapping(path = "/{productId}")
-    public ResponseEntity<String> updateProductName(@PathVariable Long productId, @RequestParam String name) {
+    @PutMapping(path = "/{productId}/{productName}/{branchId}")
+    public ResponseEntity<String> updateProductName(@PathVariable Long productId,
+                                                    @PathVariable Long branchId,
+                                                    @PathVariable String productName) {
         try {
-            productUseCase.updateProductName(productId, name);
-        } catch (ProductNotFoundException | RecordNameFoundException e) {
+            productUseCase.updateProductName(productId, productName, branchId);
+        } catch (ProductNotFoundException | RecordNameFoundException | BranchNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("product name updated");

@@ -35,12 +35,12 @@ public class BranchRepositoryImpl implements BranchRepository {
     }
 
     @Override
-    public Branch getRecordByName(String branchName) {
+    public Branch getBranchByName(String branchName) {
         return this.branchRepository.getBranchByName(branchName);
     }
 
     @Override
-    public Branch getRecordByNameOfDifferentId(Long branchId, String branchName) {
+    public Branch getBranchByNameOfDifferentId(Long branchId, String branchName) {
         return this.branchRepository.getBranchByNameWithDifferentId(branchId, branchName);
     }
 }

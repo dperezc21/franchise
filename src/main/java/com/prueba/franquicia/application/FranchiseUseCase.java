@@ -42,12 +42,12 @@ public class FranchiseUseCase {
     }
 
     public void verifyFranchiseNameNotExists(String franchiseName) throws RecordNameFoundException {
-        Franchise franchise = this.franchiseRepository.getRecordByName(franchiseName);
+        Franchise franchise = this.franchiseRepository.getFranchiseByName(franchiseName);
         if(franchise != null) throw new RecordNameFoundException(MessageConstants.FRANCHISE_BY_NAME_FOUND);
     }
 
     public void nameNoExistsToOtherFranchise(Long franchiseId, String franchiseName) throws RecordNameFoundException {
-        Franchise franchise = this.franchiseRepository.getRecordByNameOfDifferentId(franchiseId, franchiseName);
+        Franchise franchise = this.franchiseRepository.getFranchiseByNameOfDifferentId(franchiseId, franchiseName);
         if(franchise != null) throw new RecordNameFoundException("this name exists to other branch");
     }
 

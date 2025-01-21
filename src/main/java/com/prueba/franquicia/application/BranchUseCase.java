@@ -22,9 +22,9 @@ public class BranchUseCase {
     private FranchiseRepository franchiseRepository;
 
     public void saveBranch(BranchResponse branchResponse) throws FranchiseNotFoundException, RecordNameFoundException {
-        this.verifyBranchNameNotExists(branchResponse.getBranchName());
         Franchise findFranchise = franchiseRepository.getFranchiseById(branchResponse.getFranchiseId());
         if(findFranchise == null) throw new FranchiseNotFoundException(MessageConstants.FRANCHISE_NOT_FOUND);
+        this.verifyBranchNameNotExists(branchResponse.getBranchName());
         Branch branchToSave = new Branch();
         branchToSave.setName(branchResponse.getBranchName());
         branchToSave.setFranchise(findFranchise);
@@ -45,12 +45,12 @@ public class BranchUseCase {
     }
 
     public void verifyBranchNameNotExists(String branchName) throws RecordNameFoundException {
-        Branch branch = this.branchRepository.getRecordByName(branchName);
+        Branch branch = this.branchRepository.getBranchByName(branchName);
         if(branch != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
     }
 
     public void nameNoExistsToOtherBranch(Long branchId, String branchName) throws RecordNameFoundException {
-        Branch branch = this.branchRepository.getRecordByNameOfDifferentId(branchId, branchName);
-        if(branch != null) throw new RecordNameFoundException("this name exists to other branch");
+        Branch branch = this.branchRepository.getBranchByNameOfDifferentId(branchId, branchName);
+        if(branch != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
     }
 }

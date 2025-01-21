@@ -26,9 +26,9 @@ public class ProductUseCase {
     private BranchRepository branchRepository;
 
     public void saveProduct(String productName, Integer productStock, Long branchId) throws BranchNotFoundException, RecordNameFoundException {
-        this.verifyProductNameNotExists(productName);
         Branch branchFound = this.branchRepository.getBranchById(branchId);
         if(branchFound == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
+        this.verifyProductNameNotExists(productName, branchId);
         Product product = new Product(productName, productStock);
         product.setBranch(branchFound);
         productRepository.saveProduct(product);
@@ -54,22 +54,24 @@ public class ProductUseCase {
         return product;
     }
 
-    public void updateProductName(Long productId, String name) throws ProductNotFoundException, RecordNameFoundException {
-        this.nameNoExistsToOtherProduct(productId, name);
+    public void updateProductName(Long productId, String name, Long branchId) throws ProductNotFoundException, RecordNameFoundException, BranchNotFoundException {
+        Branch findBranch = this.branchRepository.getBranchById(branchId);
+        if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
+        this.nameNoExistsToOtherProduct(productId, name, branchId);
         Product product = getProductById(productId);
         if(product == null) throw new ProductNotFoundException(MessageConstants.PRODUCT_NOT_FOUND);
         product.setName(name);
         productRepository.updateProduct(product);
     }
 
-    public void verifyProductNameNotExists(String productName) throws RecordNameFoundException {
-        Product product = this.productRepository.getRecordByName(productName);
-        if(product != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
+    public void verifyProductNameNotExists(String productName, Long branchId) throws RecordNameFoundException {
+        Product product = this.productRepository.getProductByName(productName, branchId);
+        if(product != null) throw new RecordNameFoundException(MessageConstants.PRODUCT_NAME_EXISTS);
     }
 
-    public void nameNoExistsToOtherProduct(Long productId, String productName) throws RecordNameFoundException {
-        Product product = this.productRepository.getRecordByNameOfDifferentId(productId, productName);
-        if(product != null) throw new RecordNameFoundException("this name exists to other product");
+    public void nameNoExistsToOtherProduct(Long productId, String productName, Long branchId) throws RecordNameFoundException {
+        Product product = this.productRepository.getProductByNameOfDifferentId(productId, productName, branchId);
+        if(product != null) throw new RecordNameFoundException(MessageConstants.PRODUCT_NAME_EXISTS);
     }
 
     // TODO: change later for more specific queries

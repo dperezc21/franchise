@@ -24,11 +24,6 @@ public class Branch {
     @JsonIdentityReference(alwaysAsId = true)
     private Franchise franchise;
 
-    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Product> productList;*/
-
     public Long getId() {
         return id;
     }

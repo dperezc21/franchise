@@ -40,12 +40,12 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Product getRecordByName(String productName) {
-        return this.productDBRepository.getProductByName(productName);
+    public Product getProductByName(String productName, Long branchId) {
+        return this.productDBRepository.getProductByName(productName, branchId);
     }
 
     @Override
-    public Product getRecordByNameOfDifferentId(Long id, String name) {
-        return this.productDBRepository.getProductByNameWithDifferentId(id, name);
+    public Product getProductByNameOfDifferentId(Long id, String name, Long branchId) {
+        return this.productDBRepository.getProductByNameWithDifferentId(id, name, branchId);
     }
 }

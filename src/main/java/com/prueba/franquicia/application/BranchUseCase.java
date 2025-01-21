@@ -36,7 +36,8 @@ public class BranchUseCase {
         return branchRepository.getBranchById(branchId);
     }
 
-    public void updateBranchName(Long branchId, String branchName) throws BranchNotFoundException {
+    public void updateBranchName(Long branchId, String branchName) throws BranchNotFoundException, RecordNameFoundException {
+        this.nameExistsToOtherBranch(branchId, branchName);
         Branch branch = getBranchById(branchId);
         if(branch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
         branch.setName(branchName);
@@ -46,5 +47,11 @@ public class BranchUseCase {
     public void verifyBranchNameNotExists(String branchName) throws RecordNameFoundException {
         Branch branch = this.branchRepository.getRecordByName(branchName);
         if(branch != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
+    }
+
+    public void nameExistsToOtherBranch(Long branchId, String branchName) throws RecordNameFoundException {
+        Branch branch = this.branchRepository.getRecordByNameOfDifferentId(branchId, branchName);
+        System.out.println(branch);
+        if(branch != null) throw new RecordNameFoundException("this name exists to other branch");
     }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -27,10 +29,6 @@ public class Branch {
     @JsonIdentityReference(alwaysAsId = true)
     private List<Product> productList;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
@@ -41,10 +39,6 @@ public class Branch {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Franchise getFranchise() {
-        return franchise;
     }
 
     public void setFranchise(Franchise franchise) {

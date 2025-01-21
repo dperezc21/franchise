@@ -31,7 +31,7 @@ public class BranchController {
     public ResponseEntity<String> updateBranchName(@PathVariable Long branchId, @RequestParam String name) {
         try {
             branchUseCase.updateBranchName(branchId, name);
-        } catch (BranchNotFoundException e) {
+        } catch (BranchNotFoundException | RecordNameFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("branch name updated");

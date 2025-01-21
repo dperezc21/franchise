@@ -19,9 +19,9 @@ public class FranchiseController {
     private FranchiseUseCase franchiseUseCase;
 
     @PostMapping(path="/add")
-    public @ResponseBody ResponseEntity<String> addNewFranchise(@RequestParam String name) {
+    public @ResponseBody ResponseEntity<String> addNewFranchise(@RequestBody FranchiseResponse franchiseResponse) {
         try{
-            this.franchiseUseCase.createFranchise(name);
+            this.franchiseUseCase.createFranchise(franchiseResponse.getFranchiseName());
         } catch (RecordNameFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

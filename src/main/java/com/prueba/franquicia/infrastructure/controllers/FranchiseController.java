@@ -1,16 +1,15 @@
 package com.prueba.franquicia.infrastructure.controllers;
 
 import com.prueba.franquicia.application.FranchiseUseCase;
+import com.prueba.franquicia.domain.exceptions.FranchiseNameFoundException;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.response.FranchiseResponse;
-import com.prueba.franquicia.domain.response.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/franchises")
@@ -20,13 +19,13 @@ public class FranchiseController {
     private FranchiseUseCase franchiseUseCase;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewFranchise(@RequestParam String name) {
+    public @ResponseBody ResponseEntity<String> addNewFranchise(@RequestParam String name) {
         try{
             this.franchiseUseCase.createFranchise(name);
-        } catch (Exception e) {
-            System.out.println("error while save franchise");
+        } catch (FranchiseNameFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return "Saved";
+        return ResponseEntity.ok("Saved");
     }
 
     @PutMapping(path = "/{franchiseId}")

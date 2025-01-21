@@ -1,6 +1,7 @@
 package com.prueba.franquicia.application;
 
 import com.prueba.franquicia.domain.constants.MessageConstants;
+import com.prueba.franquicia.domain.exceptions.FranchiseNameFoundException;
 import com.prueba.franquicia.domain.exceptions.FranchiseNotFoundException;
 import com.prueba.franquicia.domain.models.Franchise;
 import com.prueba.franquicia.domain.repositories.FranchiseRepository;
@@ -22,10 +23,10 @@ public class FranchiseUseCase {
         this.franchiseRepository.updateFranchiseName(franchise);
     }
 
-
-    public void createFranchise(String franchiseName) {
+    public void createFranchise(String franchiseName) throws FranchiseNameFoundException {
         Franchise franchise = new Franchise();
         franchise.setName(franchiseName);
+        this.verifyFranchiseNameNotExists(franchiseName);
         this.franchiseRepository.createFranchise(franchise);
     }
 
@@ -37,6 +38,11 @@ public class FranchiseUseCase {
 
     public List<Franchise> getAllFranchise() {
         return this.franchiseRepository.getFranchises();
+    }
+
+    public void verifyFranchiseNameNotExists(String franchiseName) throws FranchiseNameFoundException {
+        Franchise franchise = this.franchiseRepository.getRecordByName(franchiseName);
+        if(franchise != null) throw new FranchiseNameFoundException(MessageConstants.FRANCHISE_BY_NAME_FOUND);
     }
 
     public static FranchiseResponse mapFranchise(Franchise franchise) {

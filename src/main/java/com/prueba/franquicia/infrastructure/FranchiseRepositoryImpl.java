@@ -35,4 +35,9 @@ public class FranchiseRepositoryImpl implements FranchiseRepository {
     public List<Franchise> getFranchises() {
         return (List<Franchise>) franchiseDBRepository.findAll();
     }
+
+    @Override
+    public Franchise getRecordByName(String recordName) {
+        return this.franchiseDBRepository.getFranchiseByName(recordName);
+    }
 }

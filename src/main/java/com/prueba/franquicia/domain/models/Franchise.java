@@ -1,5 +1,8 @@
 package com.prueba.franquicia.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,18 +16,20 @@ public class Franchise {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "franchise")
-    private List<Branch> branchList;
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "franchise")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Branch> branchList;*/
 
     public Franchise() {}
     public Franchise(String franchiseName) {
         this.name = franchiseName;
     }
 
-    public Franchise(String franchiseName, List<Branch> branchList) {
+    /*public Franchise(String franchiseName, List<Branch> branchList) {
         this.name = franchiseName;
         this.branchList = branchList;
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -42,20 +47,19 @@ public class Franchise {
         this.id = id;
     }
 
-    public List<Branch> getBranchList() {
+    /*public List<Branch> getBranchList() {
         return branchList;
     }
 
     public void setBranchList(List<Branch> branchList) {
         this.branchList = branchList;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Franchise{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", branchList=" + branchList +
                 '}';
     }
 }

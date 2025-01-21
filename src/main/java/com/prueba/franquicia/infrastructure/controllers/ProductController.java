@@ -59,7 +59,7 @@ public class ProductController {
     public ResponseEntity<String> updateProductName(@PathVariable Long productId, @RequestParam String name) {
         try {
             productUseCase.updateProductName(productId, name);
-        } catch (ProductNotFoundException e) {
+        } catch (ProductNotFoundException | RecordNameFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("product name updated");

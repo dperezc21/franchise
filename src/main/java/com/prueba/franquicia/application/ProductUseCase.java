@@ -50,7 +50,8 @@ public class ProductUseCase {
         return product;
     }
 
-    public void updateProductName(Long productId, String name) throws ProductNotFoundException {
+    public void updateProductName(Long productId, String name) throws ProductNotFoundException, RecordNameFoundException {
+        this.nameNoExistsToOtherProduct(productId, name);
         Product product = getProductById(productId);
         if(product == null) throw new ProductNotFoundException(MessageConstants.PRODUCT_NOT_FOUND);
         product.setName(name);
@@ -60,5 +61,10 @@ public class ProductUseCase {
     public void verifyProductNameNotExists(String productName) throws RecordNameFoundException {
         Product product = this.productRepository.getRecordByName(productName);
         if(product != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
+    }
+
+    public void nameNoExistsToOtherProduct(Long productId, String productName) throws RecordNameFoundException {
+        Product product = this.productRepository.getRecordByNameOfDifferentId(productId, productName);
+        if(product != null) throw new RecordNameFoundException("this name exists to other product");
     }
 }

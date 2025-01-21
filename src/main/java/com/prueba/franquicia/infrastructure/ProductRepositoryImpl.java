@@ -39,6 +39,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product getRecordByNameOfDifferentId(Long id, String name) {
-        return null;
+        return this.productDBRepository.getProductByNameWithDifferentId(id, name);
     }
 }

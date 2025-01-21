@@ -18,7 +18,7 @@ public class FranchiseUseCase {
     private FranchiseRepository franchiseRepository;
 
     public void updateFranchiseName(Long franchiseId, String franchiseName) throws FranchiseNotFoundException, RecordNameFoundException {
-        this.nameExistsToOtherFranchise(franchiseId, franchiseName);
+        this.nameNoExistsToOtherFranchise(franchiseId, franchiseName);
         Franchise franchise = getFranchiseById(franchiseId);
         franchise.setName(franchiseName);
         this.franchiseRepository.updateFranchiseName(franchise);
@@ -46,7 +46,7 @@ public class FranchiseUseCase {
         if(franchise != null) throw new RecordNameFoundException(MessageConstants.FRANCHISE_BY_NAME_FOUND);
     }
 
-    public void nameExistsToOtherFranchise(Long franchiseId, String franchiseName) throws RecordNameFoundException {
+    public void nameNoExistsToOtherFranchise(Long franchiseId, String franchiseName) throws RecordNameFoundException {
         Franchise franchise = this.franchiseRepository.getRecordByNameOfDifferentId(franchiseId, franchiseName);
         if(franchise != null) throw new RecordNameFoundException("this name exists to other branch");
     }

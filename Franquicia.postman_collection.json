@@ -335,7 +335,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"branchName\": \"Dolar city\",\r\n    \"franchiseId\": 2\r\n}",
+									"raw": "{\r\n    \"branchName\": \"Dolar city\",\r\n    \"franchiseId\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -374,7 +374,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://franchise-production.up.railway.app/branches/3?name=Dola city",
+									"raw": "https://franchise-production.up.railway.app/branches/2?name=Dola city",
 									"protocol": "https",
 									"host": [
 										"franchise-production",
@@ -384,7 +384,7 @@
 									],
 									"path": [
 										"branches",
-										"3"
+										"2"
 									],
 									"query": [
 										{
@@ -408,7 +408,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"franchiseName\": \"kfc\"\r\n}",
+									"raw": "{\r\n    \"franchiseName\": \"dominos pizza\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -447,7 +447,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://franchise-production.up.railway.app/5?name=PolloChicken",
+									"raw": "https://franchise-production.up.railway.app/franchises/2?name=Dominos Pizza",
 									"protocol": "https",
 									"host": [
 										"franchise-production",
@@ -456,12 +456,13 @@
 										"app"
 									],
 									"path": [
-										"5"
+										"franchises",
+										"2"
 									],
 									"query": [
 										{
 											"key": "name",
-											"value": "PolloChicken"
+											"value": "Dominos Pizza"
 										}
 									]
 								}
@@ -471,7 +472,7 @@
 					]
 				},
 				{
-					"name": "product Copy",
+					"name": "product",
 					"item": [
 						{
 							"name": "delete product",
@@ -588,7 +589,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"branchId\": 3,\r\n    \"name\": \"huevos\",\r\n    \"stock\": 17\r\n}",
+									"raw": "{\r\n    \"branchId\": 1,\r\n    \"name\": \"arroz\",\r\n    \"stock\": 20\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -614,11 +615,23 @@
 						},
 						{
 							"name": "getLargestStockProductByBranch",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "https://franchise-production.up.railway.app/largestStock",
+									"raw": "https://franchise-production.up.railway.app/products/largestStock",
 									"protocol": "https",
 									"host": [
 										"franchise-production",
@@ -627,6 +640,7 @@
 										"app"
 									],
 									"path": [
+										"products",
 										"largestStock"
 									]
 								}

@@ -34,9 +34,7 @@ public class ProductUseCase {
         productRepository.saveProduct(product);
     }
 
-    public void deleteProduct(Long productId, Long branchId) throws ProductNotFoundException, BranchNotFoundException {
-        Branch findBranch = this.branchRepository.getBranchById(branchId);
-        if(findBranch == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
+    public void deleteProduct(Long productId) throws ProductNotFoundException {
         Product productToDelete = this.getProductById(productId);
         productRepository.deleteProduct(productToDelete.getId());
     }

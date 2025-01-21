@@ -37,11 +37,10 @@ public class ProductController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteProduct(@RequestParam Long branchId,
-                                                @RequestParam Long productId) {
+    public ResponseEntity<String> deleteProduct(@RequestParam Long productId) {
         try {
-            this.productUseCase.deleteProduct(productId, branchId);
-        } catch (BranchNotFoundException | ProductNotFoundException e) {
+            this.productUseCase.deleteProduct(productId);
+        } catch (ProductNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok().body("product deleted");

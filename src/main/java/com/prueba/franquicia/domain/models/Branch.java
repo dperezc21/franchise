@@ -24,10 +24,10 @@ public class Branch {
     @JsonIdentityReference(alwaysAsId = true)
     private Franchise franchise;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    private List<Product> productList;
+    private List<Product> productList;*/
 
     public Long getId() {
         return id;
@@ -51,7 +51,6 @@ public class Branch {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", franchise=" + franchise +
-                ", productList=" + productList +
                 '}';
     }
 }

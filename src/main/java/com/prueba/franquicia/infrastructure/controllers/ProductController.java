@@ -6,11 +6,14 @@ import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
 import com.prueba.franquicia.domain.exceptions.RecordNameFoundException;
 import com.prueba.franquicia.domain.exceptions.StockException;
+import com.prueba.franquicia.domain.models.Product;
 import com.prueba.franquicia.domain.response.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/products")
@@ -63,5 +66,10 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("product name updated");
+    }
+
+    @GetMapping(path = "/largestStock")
+    public ResponseEntity<List<Product>> getProductWithLargestStock() {
+        return ResponseEntity.ok(this.productUseCase.getLargestStockProductByBranch());
     }
 }

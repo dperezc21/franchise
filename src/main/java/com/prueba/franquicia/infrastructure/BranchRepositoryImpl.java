@@ -6,6 +6,8 @@ import com.prueba.franquicia.infrastructure.database.BranchDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class BranchRepositoryImpl implements BranchRepository {
 
@@ -25,6 +27,11 @@ public class BranchRepositoryImpl implements BranchRepository {
     @Override
     public Branch getBranchById(Long branchId) {
         return this.branchRepository.findById(branchId).orElse(null);
+    }
+
+    @Override
+    public List<Branch> getAllBranches() {
+        return (List<Branch>) this.branchRepository.findAll();
     }
 
     @Override

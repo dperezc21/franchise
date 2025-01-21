@@ -6,6 +6,8 @@ import com.prueba.franquicia.infrastructure.database.ProductDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
@@ -30,6 +32,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public void updateProduct(Product product) {
         this.saveProduct(product);
+    }
+
+    @Override
+    public List<Product> getProductsOfBranch(Long branchId) {
+        return this.productDBRepository.productsOfBranch(branchId);
     }
 
     @Override

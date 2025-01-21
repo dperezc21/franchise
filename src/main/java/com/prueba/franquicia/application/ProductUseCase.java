@@ -12,6 +12,10 @@ import com.prueba.franquicia.domain.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 @Service
 public class ProductUseCase {
 
@@ -66,5 +70,17 @@ public class ProductUseCase {
     public void nameNoExistsToOtherProduct(Long productId, String productName) throws RecordNameFoundException {
         Product product = this.productRepository.getRecordByNameOfDifferentId(productId, productName);
         if(product != null) throw new RecordNameFoundException("this name exists to other product");
+    }
+
+    // TODO: change later for more specific queries
+    public List<Product> getLargestStockProductByBranch() {
+        List<Product> productList = new ArrayList<>();
+
+        this.branchRepository.getAllBranches().forEach(branch -> {
+            this.productRepository.getProductsOfBranch(branch.getId())
+                    .stream().max(Comparator.comparingLong(Product::getStock)).ifPresent(productList::add);
+        });
+
+        return productList;
     }
 }

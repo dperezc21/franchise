@@ -32,7 +32,7 @@ public class FranchiseController {
     public ResponseEntity<String> updateFranchiseName(@PathVariable Long franchiseId, @RequestParam String name) {
         try {
             franchiseUseCase.updateFranchiseName(franchiseId, name);
-        } catch (FranchiseNotFoundException e) {
+        } catch (FranchiseNotFoundException | RecordNameFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok("franchise name updated");

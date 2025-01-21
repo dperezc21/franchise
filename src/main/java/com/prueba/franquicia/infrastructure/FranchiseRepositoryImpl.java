@@ -42,7 +42,7 @@ public class FranchiseRepositoryImpl implements FranchiseRepository {
     }
 
     @Override
-    public Franchise getRecordByNameOfDifferentId(Long id, String name) {
-        return null;
+    public Franchise getRecordByNameOfDifferentId(Long franchiseId, String franchiseName) {
+        return this.franchiseDBRepository.getFranchiseByNameWithDifferentId(franchiseId, franchiseName);
     }
 }

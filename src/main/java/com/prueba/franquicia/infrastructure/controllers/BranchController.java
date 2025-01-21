@@ -18,13 +18,13 @@ public class BranchController {
     private BranchUseCase branchUseCase;
 
     @PostMapping(path = "/add")
-    public ResponseEntity<BranchResponse> saveBranchOfFranchise(@RequestBody BranchResponse branchResponse) {
+    public ResponseEntity<String> saveBranchOfFranchise(@RequestBody BranchResponse branchResponse) {
         try {
             this.branchUseCase.saveBranch(branchResponse);
         } catch (FranchiseNotFoundException | RecordNameFoundException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok(branchResponse);
+        return ResponseEntity.ok("branch created");
     }
 
     @PutMapping(path = "/{branchId}")

@@ -3,6 +3,7 @@ package com.prueba.franquicia.application;
 import com.prueba.franquicia.domain.constants.MessageConstants;
 import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
+import com.prueba.franquicia.domain.exceptions.RecordNameFoundException;
 import com.prueba.franquicia.domain.exceptions.StockException;
 import com.prueba.franquicia.domain.models.Branch;
 import com.prueba.franquicia.domain.models.Product;
@@ -20,7 +21,8 @@ public class ProductUseCase {
     @Autowired
     private BranchRepository branchRepository;
 
-    public void saveProduct(String productName, Integer productStock, Long branchId) throws BranchNotFoundException {
+    public void saveProduct(String productName, Integer productStock, Long branchId) throws BranchNotFoundException, RecordNameFoundException {
+        this.verifyProductNameNotExists(productName);
         Branch branchFound = this.branchRepository.getBranchById(branchId);
         if(branchFound == null) throw new BranchNotFoundException(MessageConstants.BRANCH_NOT_FOUND);
         Product product = new Product(productName, productStock);
@@ -53,5 +55,10 @@ public class ProductUseCase {
         if(product == null) throw new ProductNotFoundException(MessageConstants.PRODUCT_NOT_FOUND);
         product.setName(name);
         productRepository.updateProduct(product);
+    }
+
+    public void verifyProductNameNotExists(String productName) throws RecordNameFoundException {
+        Product product = this.productRepository.getRecordByName(productName);
+        if(product != null) throw new RecordNameFoundException(MessageConstants.BRANCH_BY_NAME_FOUND);
     }
 }

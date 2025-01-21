@@ -4,6 +4,7 @@ import com.prueba.franquicia.application.BranchUseCase;
 import com.prueba.franquicia.application.ProductUseCase;
 import com.prueba.franquicia.domain.exceptions.BranchNotFoundException;
 import com.prueba.franquicia.domain.exceptions.ProductNotFoundException;
+import com.prueba.franquicia.domain.exceptions.RecordNameFoundException;
 import com.prueba.franquicia.domain.exceptions.StockException;
 import com.prueba.franquicia.domain.response.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ProductController {
 
         try {
             this.productUseCase.saveProduct(productResponse.getName(), productResponse.getStock(), productResponse.getBranchId());
-        } catch (BranchNotFoundException e) {
+        } catch (BranchNotFoundException | RecordNameFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
         return ResponseEntity.ok().body("product saved");

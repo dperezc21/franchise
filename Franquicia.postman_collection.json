@@ -7,293 +7,647 @@
 	},
 	"item": [
 		{
-			"name": "franchise",
+			"name": "LOCALHOST",
 			"item": [
 				{
-					"name": "add franchise",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"franchiseName\": \"kfc\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/franchises/add",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"franchises",
-								"add"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update franchise name",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/franchises/5?name=PolloChicken",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"franchises",
-								"5"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "PolloChicken"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "branch",
-			"item": [
-				{
-					"name": "add branch",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchName\": \"Dola city\",\r\n    \"franchiseId\": 2\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/branches/add",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"branches",
-								"add"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update branch name",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/branches/3?name=Dola city",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"branches",
-								"3"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Dola city"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "product",
-			"item": [
-				{
-					"name": "delete product",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/products?branchId=2&productId=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"products"
-							],
-							"query": [
-								{
-									"key": "branchId",
-									"value": "2"
+					"name": "branch",
+					"item": [
+						{
+							"name": "add branch",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"Dola city\",\r\n    \"franchiseId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
-								{
-									"key": "productId",
-									"value": "1"
+								"url": {
+									"raw": "http://localhost:8000/branches/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"branches",
+										"add"
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update product stock",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8000/products/5/16",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"products",
-								"5",
-								"16"
-							]
+						{
+							"name": "update branch name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/branches/3?name=Dola city",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"branches",
+										"3"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Dola city"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "update product name",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "franchise",
+					"item": [
+						{
+							"name": "add franchise",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"franchiseName\": \"kfc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/franchises/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"franchises",
+										"add"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8000/products/3?name=Burguer Kings",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"products",
-								"3"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Burguer Kings"
+						{
+							"name": "update franchise name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/franchises/5?name=PolloChicken",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"franchises",
+										"5"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "PolloChicken"
+										}
+									]
 								}
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "add product to branch",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"branchId\": 3,\r\n    \"name\": \"huevos\",\r\n    \"stock\": 17\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "product",
+					"item": [
+						{
+							"name": "delete product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/products?branchId=2&productId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "branchId",
+											"value": "2"
+										},
+										{
+											"key": "productId",
+											"value": "1"
+										}
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8000/products/add",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"products",
-								"add"
-							]
+						{
+							"name": "update product stock",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/products/5/16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"products",
+										"5",
+										"16"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update product name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/products/3?name=Burguer Kings",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"products",
+										"3"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Burguer Kings"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add product to branch",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchId\": 3,\r\n    \"name\": \"huevos\",\r\n    \"stock\": 17\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/products/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"products",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getLargestStockProductByBranch",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/products/largestStock",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"products",
+										"largestStock"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "getLargestStockProductByBranch",
+					"name": "welcome",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8000/products/largestStock",
+							"raw": "http://localhost:8000",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8000",
-							"path": [
-								"products",
-								"largestStock"
+							"port": "8000"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DEPLOYED",
+			"item": [
+				{
+					"name": "branch",
+					"item": [
+						{
+							"name": "add branch",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"Dolar city\",\r\n    \"franchiseId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/branches/add",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"branches",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update branch name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/branches/3?name=Dola city",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"branches",
+										"3"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Dola city"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "franchise",
+					"item": [
+						{
+							"name": "add franchise",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"franchiseName\": \"kfc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/franchises/add",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"franchises",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update franchise name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/5?name=PolloChicken",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"5"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "PolloChicken"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "product Copy",
+					"item": [
+						{
+							"name": "delete product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/products?branchId=2&productId=1",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "branchId",
+											"value": "2"
+										},
+										{
+											"key": "productId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update product stock",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/products/5/16",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"products",
+										"5",
+										"16"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update product name",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/3?name=Burguer Kings",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"3"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Burguer Kings"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add product to branch",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"branchId\": 3,\r\n    \"name\": \"huevos\",\r\n    \"stock\": 17\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/products/add",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"products",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getLargestStockProductByBranch",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://franchise-production.up.railway.app/largestStock",
+									"protocol": "https",
+									"host": [
+										"franchise-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"largestStock"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "welcome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://franchise-production.up.railway.app",
+							"protocol": "https",
+							"host": [
+								"franchise-production",
+								"up",
+								"railway",
+								"app"
 							]
 						}
 					},

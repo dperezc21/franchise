@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "8a1cff8f-d704-4ccc-bdb6-ef63d52a8d0a",
+		"name": "Franquicia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38415255"
+	},
+	"item": [
+		{
+			"name": "franchise",
+			"item": [
+				{
+					"name": "add franchise",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"franchiseName\": \"kfc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/franchises/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"franchises",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update franchise name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/franchises/5?name=PolloChicken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"franchises",
+								"5"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "PolloChicken"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "branch",
+			"item": [
+				{
+					"name": "add branch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchName\": \"Dola city\",\r\n    \"franchiseId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/branches/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"branches",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update branch name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/branches/3?name=Dola city",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"branches",
+								"3"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Dola city"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/products?branchId=2&productId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "branchId",
+									"value": "2"
+								},
+								{
+									"key": "productId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product stock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/products/5/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"5",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchName\": \"colina abajo\",\r\n    \"franchiseId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/products/3?name=Burguer Kings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"3"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Burguer Kings"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product to branch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"branchId\": 3,\r\n    \"name\": \"huevos\",\r\n    \"stock\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/products/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLargestStockProductByBranch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/products/largestStock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"largestStock"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

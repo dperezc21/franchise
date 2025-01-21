@@ -31,4 +31,9 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void updateProduct(Product product) {
         this.saveProduct(product);
     }
+
+    @Override
+    public Product getRecordByName(String productName) {
+        return this.productDBRepository.getProductByName(productName);
+    }
 }

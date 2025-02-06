@@ -8,6 +8,5 @@
    #### set variables DB_NAME, DB_HOST, DB_PORT, DB_USER_NAME, DB_PASSWORD  
 
 3. localhost base url <ins>http://localhost:8000</ins>.
-4. deployed base url: <ins>https://franchise-production.up.railway.app</ins>.
 
 ### **Postman Documentation** [here](Franquicia.postman_collection.json), import in postman to use it.

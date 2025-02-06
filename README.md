@@ -1,6 +1,6 @@
 # franchise
 
-### service to franchise, branch and products done with spring boot and susing mysql database
+### api rest to franchise, branch and products done with spring boot and susing mysql database
 
 ## steps to run in localhost
 1. create mysql database with franquicia name.
